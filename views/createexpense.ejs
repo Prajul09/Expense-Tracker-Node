@@ -1,0 +1,38 @@
+<%- include("header.ejs")%>
+
+<%- include("nav.ejs")%>
+
+<div class="container mt-5">
+    <form action="/createexpense" method="POST" class="col-md-6 offset-md-3">
+        <h2 class="mb-4">Add Expense</h2>
+
+        <div class="form-group">
+            <label for="amount" class="mt-2">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+        </div>
+
+        <div class="form-group">
+            <label for="remark"class="mt-2">Remark</label>
+            <input type="text" class="form-control" id="remark" name="remark" placeholder="Remark" required>
+        </div>
+
+        <div class="form-group">
+            <label for="category" class="mt-2">Category</label>
+            <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
+        </div>
+
+        <div class="form-group">
+            <label for="paymentmode" class="mt-2">Payment Mode</label>
+            <select class="form-control" id="paymentmode" name="paymentmode" required>
+                <option value="cash">Cash</option>
+                <option value="online">Online</option>
+                <option value="cheque">Cheque</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Add Expense</button>
+    </form>
+</div>
+
+<%- include("footer.ejs")%>
+

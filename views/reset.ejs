@@ -1,0 +1,24 @@
+<%- include("header.ejs")%>
+
+<%- include("nav.ejs")%>
+
+<div class="container mt-5">
+    <form action="/reset" method="POST" class="col-md-6 offset-md-3">
+        <h2 class="mb-4">Reset Password</h2>
+
+        <div class="form-group">
+            <label for="oldpassword" class="mt-2">Old Password</label>
+            <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Old Password">
+        </div>
+
+        <div class="form-group">
+            <label for="newpassword"  class="mt-2">New Password</label>
+            <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="New Password">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Reset</button>
+    </form>
+</div>
+
+<%- include("footer.ejs")%>
+

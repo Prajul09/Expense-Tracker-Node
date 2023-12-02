@@ -1,0 +1,39 @@
+<%- include("header.ejs")%>
+
+<%- include("nav.ejs")%>
+
+<div class="container mt-5">
+    <form action="/update-expense/<%= expense._id %>" method="POST" class="col-md-6 offset-md-3">
+        <h2 class="mb-4">Update Expense</h2>
+
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" value="<%= expense.amount %>" />
+        </div>
+
+        <div class="form-group">
+            <label for="remark">Remark</label>
+            <input type="text" class="form-control" id="remark" name="remark" value="<%= expense.remark %>" />
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" name="category" value="<%= expense.category %>" />
+        </div>
+
+        <div class="form-group">
+            <label for="paymentmode">Payment Mode</label>
+            <select class="form-control" id="paymentmode" name="paymentmode">
+                <option value="cash" <%= expense.paymentmode === 'cash' ? 'selected' : '' %>>Cash</option>
+                <option value="online" <%= expense.paymentmode === 'online' ? 'selected' : '' %>>Online</option>
+                <option value="cheque" <%= expense.paymentmode === 'cheque' ? 'selected' : '' %>>Cheque</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Update Expense</button>
+    </form>
+</div>
+
+<%- include("footer.ejs")%>
+
+

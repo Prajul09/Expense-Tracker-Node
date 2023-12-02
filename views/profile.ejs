@@ -1,0 +1,103 @@
+<%- include("header.ejs")%>
+
+<%- include("nav.ejs")%>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <h1 class="mb-4">👋 <%= admin.username %></h1>
+            
+            <!-- Display circular user profile picture -->
+            <div class="profile-picture mb-3">
+                <% if (admin.profilePicture) { %>
+                    <img src="/uploads/<%= admin.profilePicture %>" alt="Profile Picture" class="rounded-circle object-fit: cover" width="100" height="100" >
+                <% } else { %>
+                    <p>No profile picture available.</p>
+                <% } %>
+            </div>
+            <div>
+                <h4 class="mb-4 small text-muted">Email: <%= admin.email %></h4>
+            </div>
+            
+            <!-- Form to upload/update profile picture -->
+            <form action="/update-profile-picture" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <!-- <label for="profilePicture">Choose Profile Picture</label> -->
+                    <input type="file" class="form-control-file" id="profilePicture" name="profilePicture" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Upload/Update Profile Picture</button>
+            </form>
+
+            <div class="mt-5">
+                <a href="/update-user" class="btn btn-info">Update User</a>
+                <a href="/delete-user" class="btn btn-danger">Delete Account</a>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/createexpense" class="btn btn-success mt-3">Add New Expense</a>
+                </div>
+                <div class="col-md-6">
+                    <!-- Filter form -->
+                    <form action="/filter" class="form-inline mt-3">
+                        <div class="form-group">
+                            <label for="key" class="mr-2">Filter by:</label>
+                            <select class="form-control mr-2 mt-2" id="key" name="key">
+                                <option value="amount">Amount</option>
+                                <option value="remark">Remark</option>
+                                <option value="category">Category</option>
+                                <option value="paymentmode">Payment Mode</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <input type="text" class="form-control mr-2 mt-2" id="value" name="value" placeholder="Enter search term">
+                        </div>
+                
+                        <button type="submit" class="btn btn-primary mt-3">Filter</button>
+                        <a href="/profile" class="btn btn-secondary mt-3 ml-2">Clear Filters</a>
+                    </form>
+                </div>
+                
+            </div>
+
+            <!-- Buttons for updating and deleting user -->
+            
+
+            <h1 class="mt-4">Sum: <%= expenses.reduce((ac, cv) => ac + cv.amount, 0) %></h1>
+
+            <hr />
+
+            <!-- Display expenses -->
+            <% expenses.forEach(expense => { %>
+                <div class="card mt-3 mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            Amount: <%= expense.amount %>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Remark: <%= expense.remark %>, 
+                            Category: <%= expense.category %>, 
+                            Payment Mode: <%= expense.paymentmode %>
+                        </p>
+                        <a href="/update-expense/<%= expense._id %>" class="btn btn-warning mr-2">Update</a>
+                        <form action="/delete-expense/<%= expense._id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+            
+        </div>
+    </div>
+</div>
+
+<%- include("footer.ejs")%>
+
+
+
+

@@ -1,0 +1,24 @@
+<%- include("header.ejs")%>
+
+<%- include("nav.ejs")%>
+
+<div class="container mt-5">
+    <h3 class="text-center">Update User</h3>
+
+    <form action="/update-user" method="post" class="col-md-6 offset-md-3">
+        <div class="form-group">
+            <label for="newUsername">New Username:</label>
+            <input type="text" class="form-control" id="newUsername" name="newUsername" value="<%= admin.username%>" required />
+        </div>
+        <div class="form-group">
+            <label for="newUsername">New Email:</label>
+            <input type="text" class="form-control" id="newEmail" name="newEmail" value="<%= admin.email%>" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Update User Information</button>
+        <a href="/profile" class="btn btn-secondary mt-3">Back</a>
+    </form>
+</div>
+
+<%- include("footer.ejs")%>
+

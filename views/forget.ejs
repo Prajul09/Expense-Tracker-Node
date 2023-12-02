@@ -1,0 +1,18 @@
+<%- include("header.ejs")%>
+
+<%- include("nav.ejs")%>
+
+<div class="container mt-5">
+    <form class="col-md-6 offset-md-3" action="/send-mail" method="POST">
+        <h2 class="mb-4">Forget Password?</h2>
+
+        <div class="form-group">
+            <label for="email">Enter Registered Email</label>
+            <input type="email" class="form-control mt-2" id="email" name="email" placeholder="Enter your registered email">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Send Mail</button>
+    </form>
+</div>
+
+<%- include("footer.ejs")%>
